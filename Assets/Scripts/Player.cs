@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SpawnLaser()
+    private void SpawnLaser()
     {
             _coolDown = Time.time + _fireRate;
 
