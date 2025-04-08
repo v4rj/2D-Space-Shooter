@@ -394,7 +394,6 @@ MonoBehaviour:
   _fireRate: 0.11
   _score: 0
   _isTripleShotEnabled: 0
-  _powerupTimer: 5
 --- !u!212 &1692279541
 SpriteRenderer:
   m_ObjectHideFlags: 0
