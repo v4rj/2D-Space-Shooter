@@ -6,6 +6,8 @@ public class Powerup : MonoBehaviour
 {
     [SerializeField]
     private float _powerupSpeed = 4f;
+    [SerializeField]
+    private int _powerupID;
     private GameObject _playerCheck;
     private Player _player;
 
@@ -36,8 +38,19 @@ public class Powerup : MonoBehaviour
         {
             if (_playerCheck != null)
             {
-                Debug.Log("Hit!");
-                _player.TripleShotSwitch();
+                switch(_powerupID)
+                {
+                    case 0:
+                        _player.TripleShotSwitch();
+                        break;
+                    case 1:
+                        Debug.Log("Speed Activated");
+                        break;
+                    case 2:
+                        Debug.Log("Shields Activated");
+                        break;
+                }
+
             }
             Destroy(gameObject);
         }
