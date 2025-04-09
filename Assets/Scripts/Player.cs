@@ -54,7 +54,14 @@ public class Player : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         direction = new Vector3(horizontalInput, verticalInput);
 
-        transform.Translate(direction * _speed * Time.deltaTime);
+        if (_isSpeedEnabled == true)
+        {
+            transform.Translate(direction * (_speed * 2) * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(direction * _speed * Time.deltaTime);
+        }
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
