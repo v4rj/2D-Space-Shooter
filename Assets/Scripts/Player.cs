@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     private int _score = 0;
     [SerializeField]
     private bool _isTripleShotEnabled = false;
+    [SerializeField]
+    private bool _isShieldEnabled = false;
+    [SerializeField]
+    private bool _isSpeedEnabled = false;
 
     private float _coolDown = -1f;
     private float horizontalInput;
@@ -90,6 +94,40 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(5f);
             _isTripleShotEnabled = false;
         }
+    }
+
+    public void SpeedSwitch()
+    {
+        _isSpeedEnabled = true;
+        Debug.Log("Speed Enabled");
+        StartCoroutine(SpeedPowerDownTimer());
+    }
+
+    IEnumerator SpeedPowerDownTimer()
+    {
+        while (_isSpeedEnabled == true)
+        {
+            StartCoroutine(CountDownTimer());
+            yield return new WaitForSeconds(3f);
+            _isSpeedEnabled = false;
+            Debug.Log("Speed Disabled");
+        }
+    }
+
+    IEnumerator CountDownTimer()
+    {
+        int count = 1;
+        while (_isSpeedEnabled == true)
+        {
+            Debug.Log(count);
+            count++;
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    public void ShieldSwitch()
+    {
+        _isShieldEnabled = true;
     }
 
     public void Damage(int damageValue)

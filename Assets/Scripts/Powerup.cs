@@ -44,7 +44,7 @@ public class Powerup : MonoBehaviour
                         _player.TripleShotSwitch();
                         break;
                     case 1:
-                        Debug.Log("Speed Activated");
+                        _player.SpeedSwitch();
                         break;
                     case 2:
                         Debug.Log("Shields Activated");
