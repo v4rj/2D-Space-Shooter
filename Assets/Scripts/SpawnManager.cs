@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _spawnTimeIncrease = .2f;
     [SerializeField]
+
     private float _powerupTimer = 2.3f;
     private bool _stopSpawning = false;
     private float randomPos;

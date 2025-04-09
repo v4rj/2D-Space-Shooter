@@ -8,14 +8,13 @@ public class Powerup : MonoBehaviour
     private float _powerupSpeed = 4f;
     private GameObject _playerCheck;
     private Player _player;
-    // Start is called before the first frame update
+
     void Start()
     {
         _playerCheck = GameObject.FindGameObjectWithTag("Player");
         _player = _playerCheck.GetComponent<Player>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         PowerupMovement();

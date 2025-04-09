@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
     public void TripleShotSwitch()
     {
         _isTripleShotEnabled = true;
-        //coroutine here to powerdown
         StartCoroutine(TripleShotPowerDownTimer());
     }
 
