@@ -521,7 +521,7 @@ MonoBehaviour:
   _powerupContainer: {fileID: 113263033}
   _spawnTimer: 1.8
   _spawnTimeIncrease: 0.2
-  _powerupTimer: 2.3
+  _powerupTimer: 6
 --- !u!4 &1758024535
 Transform:
   m_ObjectHideFlags: 0
