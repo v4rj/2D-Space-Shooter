@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
     {
         while (_isTripleShotEnabled == true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(5);
             _isTripleShotEnabled = false;
         }
     }
@@ -107,27 +107,40 @@ public class Player : MonoBehaviour
     {
         while (_isSpeedEnabled == true)
         {
-            StartCoroutine(CountDownTimer());
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(5);
             _isSpeedEnabled = false;
             Debug.Log("Speed Disabled");
-        }
-    }
-
-    IEnumerator CountDownTimer()
-    {
-        int count = 1;
-        while (_isSpeedEnabled == true)
-        {
-            Debug.Log(count);
-            count++;
-            yield return new WaitForSeconds(1);
         }
     }
 
     public void ShieldSwitch()
     {
         _isShieldEnabled = true;
+        Debug.Log("Shields Enabled");
+        StartCoroutine(ShieldPowerDownTimer());
+    }
+
+    IEnumerator ShieldPowerDownTimer()
+    {
+        while (_isShieldEnabled == true)
+        {
+            StartCoroutine("CountDownTimer");
+            yield return new WaitForSeconds(5f);
+            _isShieldEnabled = false;
+            Debug.Log("Shields Disabled");
+            StopCoroutine("CountDownTimer");
+        }
+    }
+
+    IEnumerator CountDownTimer()
+    {
+        int count = 1;
+        while (true)
+        {
+            Debug.Log(count);
+            yield return new WaitForSeconds(1);
+            count++;
+        }
     }
 
     public void Damage(int damageValue)

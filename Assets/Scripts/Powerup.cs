@@ -47,7 +47,7 @@ public class Powerup : MonoBehaviour
                         _player.SpeedSwitch();
                         break;
                     case 2:
-                        Debug.Log("Shields Activated");
+                        _player.ShieldSwitch();
                         break;
                 }
 
