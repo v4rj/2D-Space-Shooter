@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
-    private GameObject _powerupPrefab;
+    private GameObject[] _powerups;
     [SerializeField]
     private GameObject _powerupContainer;
     [SerializeField]
@@ -31,6 +31,7 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         randomPos = Random.Range(-9.32f, 9.32f);
+
     }
 
     IEnumerator EnemySpawnTimer()
@@ -39,7 +40,8 @@ public class SpawnManager : MonoBehaviour
 
         while (_stopSpawning == false)
             {
-                newEnemy = Instantiate(_enemyPrefab, new Vector3(randomPos, 7.7f, 0), Quaternion.identity);
+                Vector3 posToSpawn = new Vector3(randomPos, 7.7f, 0);
+                newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
                 newEnemy.transform.parent = _enemyContainer.transform;
                 yield return new WaitForSeconds(_spawnTimer);
             }         
@@ -48,10 +50,13 @@ public class SpawnManager : MonoBehaviour
     IEnumerator PowerupSpawnTimer()
     {
         GameObject newPowerUp;
+        GameObject randomPowerup;
 
         while (_stopSpawning == false)
         {
-            newPowerUp = Instantiate(_powerupPrefab, new Vector3(randomPos, 7.7f, 0), Quaternion.identity);
+            randomPowerup = _powerups[Random.Range(0, _powerups.Length)];
+            Vector3 posToSpawn = new Vector3(randomPos, 7.7f, 0);
+            newPowerUp = Instantiate(randomPowerup, posToSpawn, Quaternion.identity);
             newPowerUp.transform.parent = _powerupContainer.transform;
             yield return new WaitForSeconds(_powerupTimer);
         }
