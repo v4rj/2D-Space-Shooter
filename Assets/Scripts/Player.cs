@@ -27,10 +27,12 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 direction;
+    private GameObject _shield;
 
     void Start()
     {
         StartPosition();
+        _shield = gameObject.transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -122,20 +124,7 @@ public class Player : MonoBehaviour
     public void ShieldActivated()
     {
         _isShieldEnabled = true;
-        Debug.Log("Shield Enabled!");
-        StartCoroutine(ShieldPowerDownTimer());
-    }
-
-    IEnumerator ShieldPowerDownTimer()
-    {
-        while (_isShieldEnabled == true)
-        {
-            StartCoroutine("CountDownTimer");
-            yield return new WaitForSeconds(5f);
-            _isShieldEnabled = false;
-            Debug.Log("Shield Disabled!");
-            StopCoroutine("CountDownTimer");
-        }
+        _shield.SetActive(true);
     }
 
     IEnumerator CountDownTimer()
@@ -157,6 +146,8 @@ public class Player : MonoBehaviour
 
         if (_isShieldEnabled == true)
         {
+            _isShieldEnabled = false;
+            _shield.SetActive(false);
             return;
         }
 
