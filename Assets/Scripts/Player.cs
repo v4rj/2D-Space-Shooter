@@ -54,14 +54,7 @@ public class Player : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         direction = new Vector3(horizontalInput, verticalInput);
 
-        if (_isSpeedEnabled == true)
-        {
-            transform.Translate(direction * (_speed * 2) * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(direction * _speed * Time.deltaTime);
-        }
+        transform.Translate(direction * _speed * Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
@@ -88,7 +81,7 @@ public class Player : MonoBehaviour
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             }
     }
-    public void TripleShotSwitch()
+    public void TripleShotActivated()
     {
         _isTripleShotEnabled = true;
         StartCoroutine(TripleShotPowerDownTimer());
@@ -105,9 +98,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SpeedSwitch()
+    public void SpeedActivated()
     {
         _isSpeedEnabled = true;
+        _speed *= 2;
         Debug.Log("Speed Enabled!");
         StartCoroutine(SpeedPowerDownTimer());
     }
@@ -119,12 +113,13 @@ public class Player : MonoBehaviour
             StartCoroutine("CountDownTimer");
             yield return new WaitForSeconds(5);
             _isSpeedEnabled = false;
+            _speed /= 2;
             Debug.Log("Speed Disabled!");
             StopCoroutine("CountDownTimer");
         }
     }
 
-    public void ShieldSwitch()
+    public void ShieldActivated()
     {
         _isShieldEnabled = true;
         Debug.Log("Shield Enabled!");
