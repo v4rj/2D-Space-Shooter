@@ -6,8 +6,13 @@ public class Powerup : MonoBehaviour
 {
     [SerializeField]
     private float _powerupSpeed = 4f;
+
+    //0 = Triple Shot
+    //1 = Speed 
+    //2 = Shield
     [SerializeField]
     private int _powerupID;
+
     private GameObject _playerCheck;
     private Player _player;
 
