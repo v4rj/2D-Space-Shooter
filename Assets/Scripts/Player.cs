@@ -98,15 +98,17 @@ public class Player : MonoBehaviour
     {
         while (_isTripleShotEnabled == true)
         {
+            StartCoroutine("CountDownTimer");
             yield return new WaitForSeconds(5);
             _isTripleShotEnabled = false;
+            StopCoroutine("CountDownTimer");
         }
     }
 
     public void SpeedSwitch()
     {
         _isSpeedEnabled = true;
-        Debug.Log("Speed Enabled");
+        Debug.Log("Speed Enabled!");
         StartCoroutine(SpeedPowerDownTimer());
     }
 
@@ -114,16 +116,18 @@ public class Player : MonoBehaviour
     {
         while (_isSpeedEnabled == true)
         {
+            StartCoroutine("CountDownTimer");
             yield return new WaitForSeconds(5);
             _isSpeedEnabled = false;
-            Debug.Log("Speed Disabled");
+            Debug.Log("Speed Disabled!");
+            StopCoroutine("CountDownTimer");
         }
     }
 
     public void ShieldSwitch()
     {
         _isShieldEnabled = true;
-        Debug.Log("Shields Enabled");
+        Debug.Log("Shield Enabled!");
         StartCoroutine(ShieldPowerDownTimer());
     }
 
@@ -134,7 +138,7 @@ public class Player : MonoBehaviour
             StartCoroutine("CountDownTimer");
             yield return new WaitForSeconds(5f);
             _isShieldEnabled = false;
-            Debug.Log("Shields Disabled");
+            Debug.Log("Shield Disabled!");
             StopCoroutine("CountDownTimer");
         }
     }
@@ -142,6 +146,7 @@ public class Player : MonoBehaviour
     IEnumerator CountDownTimer()
     {
         int count = 1;
+
         while (true)
         {
             Debug.Log(count);
