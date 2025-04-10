@@ -50,13 +50,12 @@ public class SpawnManager : MonoBehaviour
     IEnumerator PowerupSpawnTimer()
     {
         GameObject newPowerUp;
-        GameObject randomPowerup;
 
         while (_stopSpawning == false)
         {
-            randomPowerup = _powerups[Random.Range(0, _powerups.Length)];
+            int randomPowerup = Random.Range(0, _powerups.Length);
             Vector3 posToSpawn = new Vector3(randomPos, 7.7f, 0);
-            newPowerUp = Instantiate(randomPowerup, posToSpawn, Quaternion.identity);
+            newPowerUp = Instantiate(_powerups[randomPowerup], posToSpawn, Quaternion.identity);
             newPowerUp.transform.parent = _powerupContainer.transform;
             yield return new WaitForSeconds(_powerupTimer);
         }
