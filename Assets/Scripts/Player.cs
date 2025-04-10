@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
 
         if (_isShieldEnabled == true)
         {
-            damageValue = 0;
+            return;
         }
 
         _playerHealth -= damageValue;
