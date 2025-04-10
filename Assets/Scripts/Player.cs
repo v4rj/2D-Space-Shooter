@@ -155,6 +155,11 @@ public class Player : MonoBehaviour
         SpawnManager spawn_manager;
         GameObject spawn_manager_check = GameObject.FindGameObjectWithTag("SpawnManager");
 
+        if (_isShieldEnabled == true)
+        {
+            damageValue = 0;
+        }
+
         _playerHealth -= damageValue;
 
         if (_playerHealth <= 0)
