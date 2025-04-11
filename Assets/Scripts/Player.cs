@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
+    private GameObject _shield;
+    [SerializeField]
     private float _fireRate = 0.5f;
     [SerializeField]
     private int _score = 0;
@@ -27,12 +29,10 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 direction;
-    private GameObject _shield;
 
     void Start()
     {
         StartPosition();
-        _shield = gameObject.transform.GetChild(0).gameObject;
     }
 
     void Update()

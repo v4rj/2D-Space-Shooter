@@ -48,6 +48,9 @@ TagManager:
   - name: Background
     uniqueID: 2353404039
     locked: 0
+  - name: Visual Buff
+    uniqueID: 2691470053
+    locked: 0
   - name: Foreground
     uniqueID: 2484060803
     locked: 0
