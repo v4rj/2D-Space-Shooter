@@ -533,8 +533,9 @@ GameObject:
   - component: {fileID: 1623885914}
   - component: {fileID: 1623885913}
   - component: {fileID: 1623885912}
+  - component: {fileID: 1623885916}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,6 +621,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1623885916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623885911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb0694193ad53f47a958eae30b81586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1848709349}
+  score: 0
 --- !u!1 &1692279539
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,10 +674,10 @@ MonoBehaviour:
     type: 3}
   _shield: {fileID: 353194716}
   _fireRate: 0.11
-  _score: 0
   _isTripleShotEnabled: 0
   _isShieldEnabled: 0
   _isSpeedEnabled: 0
+  _score: 0
 --- !u!212 &1692279541
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -844,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -91, y: -68}
+  m_AnchoredPosition: {x: -56.2, y: -59.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848709349
@@ -879,7 +894,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'Score: 0'
 --- !u!222 &1848709350
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fireRate = 0.5f;
     [SerializeField]
-    private int _score = 0;
-    [SerializeField]
     private bool _isTripleShotEnabled = false;
     [SerializeField]
     private bool _isShieldEnabled = false;
@@ -29,6 +27,8 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 direction;
+    [SerializeField]
+    private int _score = 0;
 
     void Start()
     {
@@ -167,5 +167,10 @@ public class Player : MonoBehaviour
     public void ScoreCalculator(int scoreValue)
     {
         _score += scoreValue;
+    }
+
+    public int GetScore()
+    {
+        return _score;
     }
 }
