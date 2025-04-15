@@ -9,14 +9,16 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
-    private Image _firstLife;
+    private Image _livesContainer;
     [SerializeField]
-    private Image _secondLife;
-    [SerializeField]
-    private Image _thirdLife;
+    private Sprite[] _lives;
+
 
     void Start()
     {
+        _livesContainer = _livesContainer.GetComponent<Image>();
+
+        _livesContainer.sprite = _lives[3];
         _scoreText.text = "Score: " + 0;
     }
 
@@ -26,19 +28,19 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score: " + playerScore;
     }
 
-    public void UpdateLives()
+    public void UpdateLives(int playerLife)
     {
-        if (_firstLife != null)
+        switch(playerLife)
         {
-            Destroy(_firstLife);
-        }
-        else if ( _firstLife == null & _secondLife != null)
-        {
-            Destroy(_secondLife);
-        }
-        else
-        {
-            Destroy(_thirdLife);
+            case 0:
+                _livesContainer.sprite = _lives[0];
+                break;
+            case 1:
+                _livesContainer.sprite = _lives[1];
+                break;
+            case 2:
+                _livesContainer.sprite = _lives[2];
+                break;
         }
     }
 }

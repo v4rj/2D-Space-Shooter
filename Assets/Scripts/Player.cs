@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
 
         _playerLives -= damageValue;
 
-        _uiManager.UpdateLives();
+        _uiManager.UpdateLives(_playerLives);
 
         if (_playerLives <= 0)
         {
