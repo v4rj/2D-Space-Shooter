@@ -8,18 +8,15 @@ public class Enemy : MonoBehaviour
     private float _enemySpeed = 4f;
     [SerializeField]
     private int _enemyPower = 20;
-    private GameObject playerCheck;
-    private GameObject spawnCheck;
+
+    private int randomScore;
     private Player player;
     private SpawnManager spawn;
 
     private void Start()
     {
-        playerCheck = GameObject.FindGameObjectWithTag("Player");
-        spawnCheck = GameObject.FindGameObjectWithTag("SpawnManager");
-
-        player = playerCheck.GetComponent<Player>();
-        spawn = spawnCheck.GetComponent<SpawnManager>();
+        player = GameObject.Find("Player").GetComponent<Player>();
+        spawn = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
     void Update()
@@ -36,12 +33,13 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Laser")
         {
-            if (playerCheck != null)
+            if (player != null)
             {
-                player.ScoreCalculator(20);
+                randomScore = Random.Range(10, 20);
+                player.ScoreCalculator(randomScore);
             }
 
-            if (spawnCheck != null)
+            if (spawn != null)
             {
                 spawn.IncreaseSpawnTimer();
             }

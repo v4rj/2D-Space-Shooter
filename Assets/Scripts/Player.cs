@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 direction;
-    [SerializeField]
     private int _score = 0;
 
     void Start()
