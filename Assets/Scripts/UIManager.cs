@@ -41,10 +41,10 @@ public class UIManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(.4f);
             _gameOver.gameObject.SetActive(true);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.4f);
             _gameOver.gameObject.SetActive(false);
+            yield return new WaitForSeconds(.5f);
         }
     }
 }
