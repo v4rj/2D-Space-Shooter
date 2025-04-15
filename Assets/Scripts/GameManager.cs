@@ -16,15 +16,11 @@ public class GameManager : MonoBehaviour
     {
         GameOver();
     }
-
     private void GameOver()
     {
-        if (_isGameOver == true)
+        if (Input.GetKeyDown(KeyCode.R) && _isGameOver == true)
         {
-            if (Input.GetKey("r"))
-            {
-                SceneManager.LoadScene(0);
-            }
+            SceneManager.LoadScene(0); //Current Game Scene
         }
     }
 

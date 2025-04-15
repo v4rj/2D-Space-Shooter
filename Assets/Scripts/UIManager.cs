@@ -7,8 +7,6 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _gameManagerObject;
-    [SerializeField]
     private Text _scoreText;
     [SerializeField]
     private Text _gameOver;
@@ -23,9 +21,14 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
-        _gameManager = _gameManagerObject.GetComponent<GameManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _gameOver.gameObject.SetActive(false);
         _scoreText.text = "Score: " + 0;
+
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game Manager is Null.");
+        }
     }
 
     public void UpdateScore(int playerScore)
@@ -40,13 +43,13 @@ public class UIManager : MonoBehaviour
 
         if (playerLife == 0)
         {
-            _gameManager.GameOverSwitch();
             GameOverSequence();
         }
     }
 
     private void GameOverSequence()
     {
+        _gameManager.GameOverSwitch();
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlicker());
     }
