@@ -7,25 +7,16 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text scoreText;
-    [SerializeField]
-    private int _score;
-    private GameObject playerCheck;
-    private Player player;
+    private Text _scoreText;
 
     void Start()
     {
-        playerCheck = GameObject.FindGameObjectWithTag("Player");
-        player = playerCheck.GetComponent<Player>();
+        _scoreText.text = "Score: " + 0;
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateScore(int playerScore)
     {
-        if (playerCheck != null)
-        {
-            _score = player.GetScore();
-            scoreText.text = $"Score: {_score}";
-        }
+        _scoreText.text = "Score: " + playerScore;
     }
 }

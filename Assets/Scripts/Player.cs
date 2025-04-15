@@ -28,10 +28,25 @@ public class Player : MonoBehaviour
     private float verticalInput;
     private Vector3 direction;
     private int _score = 0;
+    private SpawnManager _spawnManager;
+    private UIManager _uiManager;
 
     void Start()
     {
         StartPosition();
+
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
+
+        if (_spawnManager == null)
+        {
+            Debug.LogError("The spawn manager is null.");
+        }
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("The UI manager is null.");
+        }
     }
 
     void Update()
@@ -92,10 +107,8 @@ public class Player : MonoBehaviour
     {
         while (_isTripleShotEnabled == true)
         {
-            StartCoroutine("CountDownTimer");
             yield return new WaitForSeconds(5);
             _isTripleShotEnabled = false;
-            StopCoroutine("CountDownTimer");
         }
     }
 
@@ -103,7 +116,6 @@ public class Player : MonoBehaviour
     {
         _isSpeedEnabled = true;
         _speed *= 2;
-        Debug.Log("Speed Enabled!");
         StartCoroutine(SpeedPowerDownTimer());
     }
 
@@ -111,12 +123,9 @@ public class Player : MonoBehaviour
     {
         while (_isSpeedEnabled == true)
         {
-            StartCoroutine("CountDownTimer");
             yield return new WaitForSeconds(5);
             _isSpeedEnabled = false;
             _speed /= 2;
-            Debug.Log("Speed Disabled!");
-            StopCoroutine("CountDownTimer");
         }
     }
 
@@ -124,18 +133,6 @@ public class Player : MonoBehaviour
     {
         _isShieldEnabled = true;
         _shield.SetActive(true);
-    }
-
-    IEnumerator CountDownTimer()
-    {
-        int count = 1;
-
-        while (true)
-        {
-            Debug.Log(count);
-            yield return new WaitForSeconds(1);
-            count++;
-        }
     }
 
     public void Damage(int damageValue)
@@ -166,10 +163,6 @@ public class Player : MonoBehaviour
     public void ScoreCalculator(int scoreValue)
     {
         _score += scoreValue;
-    }
-
-    public int GetScore()
-    {
-        return _score;
+        _uiManager.UpdateScore(_score);
     }
 }

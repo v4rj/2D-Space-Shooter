@@ -633,8 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb0694193ad53f47a958eae30b81586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1848709349}
-  score: 0
+  _scoreText: {fileID: 1848709349}
 --- !u!1 &1692279539
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,7 +676,6 @@ MonoBehaviour:
   _isTripleShotEnabled: 0
   _isShieldEnabled: 0
   _isSpeedEnabled: 0
-  _score: 0
 --- !u!212 &1692279541
 SpriteRenderer:
   m_ObjectHideFlags: 0
