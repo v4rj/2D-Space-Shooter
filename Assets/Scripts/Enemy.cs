@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _enemySpeed = 4f;
     [SerializeField]
-    private int _enemyPower = 20;
+    private int _enemyPower = 1;
 
     private int randomScore;
     private Player player;

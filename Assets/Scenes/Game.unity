@@ -783,6 +783,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1848709349}
+  _firstLife: {fileID: 314975897}
+  _secondLife: {fileID: 2119786515}
+  _thirdLife: {fileID: 1575957380}
 --- !u!1 &1692279539
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf948d9d99b5be48ae449558c56304e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealth: 100
+  _playerLives: 3
   _speed: 7
   _laserPrefab: {fileID: 1947060649458477426, guid: b1521e1b5e7d7fd4e88495b9682fc8a5,
     type: 3}
@@ -1006,7 +1009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -56.2, y: -59.5}
+  m_AnchoredPosition: {x: -140, y: -34}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848709349
@@ -1145,6 +1148,7 @@ GameObject:
   - component: {fileID: 2043485406}
   - component: {fileID: 2043485405}
   - component: {fileID: 2043485404}
+  - component: {fileID: 2043485407}
   m_Layer: 5
   m_Name: Lives_Container
   m_TagString: Untagged
@@ -1170,10 +1174,10 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -291.1, y: 168.93}
-  m_SizeDelta: {x: -648.52997, y: -412.95605}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 80, y: 447}
+  m_SizeDelta: {x: 155.50073, y: -77.89166}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &2043485404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,6 +1238,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2043485407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043485402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ebcd12920c0b548a990babddd3b99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119786513
 GameObject:
   m_ObjectHideFlags: 0

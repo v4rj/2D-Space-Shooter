@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private int _playerHealth = 100;
+    private int _playerLives = 3;
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
@@ -147,9 +147,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        _playerHealth -= damageValue;
+        _playerLives -= damageValue;
 
-        if (_playerHealth <= 0)
+        _uiManager.UpdateLives();
+
+        if (_playerLives <= 0)
         {
             if (spawn_manager_check != null)
             {
