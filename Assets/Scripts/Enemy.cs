@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int _enemyPower = 1;
 
+    private Animator _animator;
     private int randomScore;
     private Player player;
     private SpawnManager spawn;
@@ -16,7 +17,22 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        if (player == null)
+        {
+            Debug.LogError("Player is null");
+        }
+        
         spawn = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        if (spawn == null)
+        {
+            Debug.LogError("Spawn Manager is null");
+        }
+
+        _animator = GetComponent<Animator>();
+        if (_animator == null)
+        {
+            Debug.LogError("Enemy Animator is null");
+        }
     }
 
     void Update()
@@ -33,6 +49,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Laser")
         {
+            Destroy(other.gameObject);
+
             if (player != null)
             {
                 randomScore = Random.Range(10, 20);
@@ -43,8 +61,12 @@ public class Enemy : MonoBehaviour
             {
                 spawn.IncreaseSpawnTimer();
             }
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+
+            _animator.SetTrigger("OnEnemyDeath");
+
+            _enemySpeed = 0;
+
+            Destroy(gameObject, 2.633f);
         }
         else if (other.tag == "Player")
         {
@@ -52,7 +74,11 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage(_enemyPower);
             }
-            Destroy(gameObject);            
+
+            _animator.SetTrigger("OnEnemyDeath");
+
+            Destroy(gameObject, 2.633f);
+
         }
     }
 

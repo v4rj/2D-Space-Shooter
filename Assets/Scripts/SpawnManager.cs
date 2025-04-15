@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
         {
             _spawnTimer -= _spawnTimeIncrease;
         }
-        else if (_spawnTimer <= 1f && _spawnTimer >= .2)
+        else if (_spawnTimer <= 1f && _spawnTimer >= .35f)
         {
             _spawnTimer -= (_spawnTimeIncrease / 2);
         }
