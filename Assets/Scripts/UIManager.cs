@@ -29,25 +29,22 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int playerLife)
     {
-        switch(playerLife)
+
+        _livesContainer.sprite = _lives[playerLife];
+
+        if (playerLife == 0)
         {
-            case 0:
-                _livesContainer.sprite = _lives[0];
-                break;
-            case 1:
-                _livesContainer.sprite = _lives[1];
-                break;
-            case 2:
-                _livesContainer.sprite = _lives[2];
-                break;
-            case 3:
-                _livesContainer.sprite = _lives[3];
-                break;
+            StartCoroutine(GameOverFlicker());
         }
     }
-
-    public void GameOver()
+    IEnumerator GameOverFlicker()
     {
-        _gameOver.gameObject.SetActive(true);
+        while (true)
+        {
+            yield return new WaitForSeconds(.4f);
+            _gameOver.gameObject.SetActive(true);
+            yield return new WaitForSeconds(.5f);
+            _gameOver.gameObject.SetActive(false);
+        }
     }
 }
