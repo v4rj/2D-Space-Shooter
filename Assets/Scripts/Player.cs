@@ -158,6 +158,11 @@ public class Player : MonoBehaviour
                 spawn_manager = spawn_manager_check.GetComponent<SpawnManager>();
                 spawn_manager.OnPlayerDeath();
             }
+
+            if (_uiManager != null)
+            {
+                _uiManager.GameOver();
+            }
             Destroy(gameObject);
         }
     }

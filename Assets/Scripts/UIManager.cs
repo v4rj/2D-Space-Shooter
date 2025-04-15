@@ -9,16 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
+    private Text _gameOver;
+    [SerializeField]
     private Image _livesContainer;
     [SerializeField]
     private Sprite[] _lives;
-
-
+    
     void Start()
     {
-        _livesContainer = _livesContainer.GetComponent<Image>();
-
-        _livesContainer.sprite = _lives[3];
+        _gameOver.gameObject.SetActive(false);
         _scoreText.text = "Score: " + 0;
     }
 
@@ -41,6 +40,14 @@ public class UIManager : MonoBehaviour
             case 2:
                 _livesContainer.sprite = _lives[2];
                 break;
+            case 3:
+                _livesContainer.sprite = _lives[3];
+                break;
         }
+    }
+
+    public void GameOver()
+    {
+        _gameOver.gameObject.SetActive(true);
     }
 }
