@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private bool _isShieldEnabled = false;
     [SerializeField]
     private bool _isSpeedEnabled = false;
+    [SerializeField]
+    private GameObject[] _hurtAnims;
 
     private float _coolDown = -1f;
     private float horizontalInput;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
     private int _score = 0;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+    private int randAnimation;
 
     void Start()
     {
@@ -47,6 +50,8 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("The UI manager is null.");
         }
+
+        randAnimation = Random.Range(0, _hurtAnims.Length);
     }
 
     void Update()
@@ -149,6 +154,8 @@ public class Player : MonoBehaviour
 
         _playerLives -= damageValue;
 
+        ActivateHurtAnimation();
+
         _uiManager.UpdateLives(_playerLives);
 
         if (_playerLives <= 0)
@@ -159,6 +166,23 @@ public class Player : MonoBehaviour
                 spawn_manager.OnPlayerDeath();
             }
             Destroy(gameObject);
+        }
+    }
+
+    private void ActivateHurtAnimation()
+    {
+        if (_playerLives < 3)
+        {
+            _hurtAnims[randAnimation].SetActive(true);
+        }
+
+        if (_playerLives < 2 && randAnimation == 0)
+        {
+            _hurtAnims[1].SetActive(true);
+        }
+        else if (_playerLives < 2 && randAnimation == 1)
+        {
+            _hurtAnims[0].SetActive(true);
         }
     }
 
