@@ -9,15 +9,12 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject _anim;
 
+    private SpawnManager _spawnManager;
     private Vector3 posToSpawn;
 
     void Start()
     {
-
-        if (_anim == null)
-        {
-            Debug.LogError("Explosion Animation animator is null");
-        }
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
     void Update()
@@ -31,11 +28,10 @@ public class Asteroid : MonoBehaviour
     {
         if (other.tag == "Laser")
         {
-            Destroy(other.gameObject);
-
             Instantiate(_anim, posToSpawn, Quaternion.identity);
-
-            Destroy(gameObject);
+            Destroy(other.gameObject);
+            _spawnManager.StartSpawning();
+            Destroy(gameObject, .05f);
         }
     }
 }

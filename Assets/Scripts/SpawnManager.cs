@@ -17,15 +17,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _spawnTimeIncrease = .2f;
     [SerializeField]
-    private float _powerupTimer = 2.3f;
+    private float _powerupTimer = 2.5f;
 
     private bool _stopSpawning = false;
     private float randomPos;
 
     void Start()
     {
-        StartCoroutine(EnemySpawnTimer());
-        StartCoroutine(PowerupSpawnTimer());
+        
     }
 
     private void Update()
@@ -33,9 +32,15 @@ public class SpawnManager : MonoBehaviour
         randomPos = Random.Range(-9.32f, 9.32f);
 
     }
+    public void StartSpawning()
+    {
+        StartCoroutine(EnemySpawnTimer());
+        StartCoroutine(PowerupSpawnTimer());
+    }
 
     IEnumerator EnemySpawnTimer()
     {
+        yield return new WaitForSeconds(2f);
         GameObject newEnemy;
 
         while (_stopSpawning == false)
@@ -49,6 +54,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator PowerupSpawnTimer()
     {
+        yield return new WaitForSeconds(3f);
         GameObject newPowerUp;
 
         while (_stopSpawning == false)
