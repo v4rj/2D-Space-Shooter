@@ -15,11 +15,13 @@ public class Powerup : MonoBehaviour
 
     private GameObject _playerCheck;
     private Player _player;
+    private AudioManager _audioManager;
 
     void Start()
     {
         _playerCheck = GameObject.FindGameObjectWithTag("Player");
         _player = _playerCheck.GetComponent<Player>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -55,7 +57,7 @@ public class Powerup : MonoBehaviour
                         _player.ShieldActivated();
                         break;
                 }
-
+                _audioManager.PlayPowerup();
             }
             Destroy(gameObject);
         }

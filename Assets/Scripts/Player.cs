@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private int _score = 0;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+    private AudioManager _audioManager;
     private int randAnimation;
 
     void Start()
@@ -39,16 +40,21 @@ public class Player : MonoBehaviour
         StartPosition();
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
-
         if (_spawnManager == null)
         {
-            Debug.LogError("The spawn manager is null.");
+            Debug.LogError("Spawn Manager is null");
         }
 
+        _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
         if (_uiManager == null)
         {
-            Debug.LogError("The UI manager is null.");
+            Debug.LogError("UI Manager is null");
+        }
+
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        if (_audioManager == null)
+        {
+            Debug.LogError("Audio Manager is null");
         }
 
         randAnimation = Random.Range(0, _hurtAnims.Length);
@@ -60,7 +66,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown)
         {
-            SpawnLaser();
+            FireLaser();
         }
     }
 
@@ -89,18 +95,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void SpawnLaser()
+    private void FireLaser()
     {
-            _coolDown = Time.time + _fireRate;
+        _coolDown = Time.time + _fireRate;
 
-            if (_isTripleShotEnabled == false)
-            {
-                Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + .85f), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-            }
+        if (_isTripleShotEnabled == false)
+        {
+            Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + .85f), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+        }
+
+        _audioManager.PlayLaserShot();
     }
     public void TripleShotActivated()
     {
@@ -165,6 +173,7 @@ public class Player : MonoBehaviour
                 spawn_manager = spawn_manager_check.GetComponent<SpawnManager>();
                 spawn_manager.OnPlayerDeath();
             }
+            _audioManager.PlayExplosion();
             Destroy(gameObject);
         }
     }

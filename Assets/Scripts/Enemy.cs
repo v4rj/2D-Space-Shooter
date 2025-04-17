@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private int randomScore;
     private Player player;
     private SpawnManager spawn;
+    private AudioManager _audioManager;
 
     private void Start()
     {
@@ -32,6 +33,12 @@ public class Enemy : MonoBehaviour
         if (_animator == null)
         {
             Debug.LogError("Enemy Animator is null");
+        }
+
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        if (_audioManager == null)
+        {
+            Debug.LogError("Audio Manager is null");
         }
     }
 
@@ -64,6 +71,8 @@ public class Enemy : MonoBehaviour
 
             _animator.SetTrigger("OnEnemyDeath");
 
+            _audioManager.PlayExplosion();
+
             _enemySpeed = 0;
 
             Destroy(gameObject, 2.633f);
@@ -77,8 +86,9 @@ public class Enemy : MonoBehaviour
 
             _animator.SetTrigger("OnEnemyDeath");
 
-            Destroy(gameObject, 2.633f);
+            _audioManager.PlayExplosion();
 
+            Destroy(gameObject, 2.633f);
         }
     }
 
