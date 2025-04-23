@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemySpeed: 3.5
   _enemyPower: 1
+  _fireRate: 3
   _laserPrefab: {fileID: 6879599673942480454, guid: a90a5f52529e79d409097f1b91be630c,
     type: 3}
 --- !u!212 &3915187902222367751
