@@ -18,12 +18,7 @@ public class Powerup : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
         _player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>();
-=======
-        _playerCheck = GameObject.FindGameObjectWithTag("Player");
-        _player = _playerCheck.GetComponent<Player>();
->>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
