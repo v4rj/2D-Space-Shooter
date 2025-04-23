@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
         QuitGame();
         GameOver();
     }
@@ -27,10 +26,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-=======
-        GameOver();
-    }
->>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
     private void GameOver()
     {
         if (Input.GetKeyDown(KeyCode.R) && _isGameOver == true)
