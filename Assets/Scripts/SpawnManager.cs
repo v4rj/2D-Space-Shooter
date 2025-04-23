@@ -17,30 +17,29 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _spawnTimeIncrease = .2f;
     [SerializeField]
-    private float _powerupTimer = 2.3f;
+    private float _powerupTimer = 2.5f;
 
     private bool _stopSpawning = false;
-    private float randomPos;
+    private float _randomPos;
 
-    void Start()
+    void Update()
+    {
+        _randomPos = Random.Range(-9.32f, 9.32f);
+    }
+    public void StartSpawning()
     {
         StartCoroutine(EnemySpawnTimer());
         StartCoroutine(PowerupSpawnTimer());
     }
 
-    private void Update()
-    {
-        randomPos = Random.Range(-9.32f, 9.32f);
-
-    }
-
     IEnumerator EnemySpawnTimer()
     {
+        yield return new WaitForSeconds(2f);
         GameObject newEnemy;
 
         while (_stopSpawning == false)
             {
-                Vector3 posToSpawn = new Vector3(randomPos, 7.7f, 0);
+                Vector3 posToSpawn = new Vector3(_randomPos, 7.7f, 0);
                 newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
                 newEnemy.transform.parent = _enemyContainer.transform;
                 yield return new WaitForSeconds(_spawnTimer);
@@ -49,12 +48,13 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator PowerupSpawnTimer()
     {
+        yield return new WaitForSeconds(3f);
         GameObject newPowerUp;
 
         while (_stopSpawning == false)
         {
             int randomPowerup = Random.Range(0, _powerups.Length);
-            Vector3 posToSpawn = new Vector3(randomPos, 7.7f, 0);
+            Vector3 posToSpawn = new Vector3(_randomPos, 7.7f, 0);
             newPowerUp = Instantiate(_powerups[randomPowerup], posToSpawn, Quaternion.identity);
             newPowerUp.transform.parent = _powerupContainer.transform;
             yield return new WaitForSeconds(_powerupTimer);
@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
         {
             _spawnTimer -= _spawnTimeIncrease;
         }
-        else if (_spawnTimer <= 1f && _spawnTimer >= .2)
+        else if (_spawnTimer <= 1f && _spawnTimer >= .35f)
         {
             _spawnTimer -= (_spawnTimeIncrease / 2);
         }

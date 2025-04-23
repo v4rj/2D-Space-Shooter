@@ -13,13 +13,13 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private int _powerupID;
 
-    private GameObject _playerCheck;
     private Player _player;
+    private AudioManager _audioManager;
 
     void Start()
     {
-        _playerCheck = GameObject.FindGameObjectWithTag("Player");
-        _player = _playerCheck.GetComponent<Player>();
+        _player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -41,7 +41,7 @@ public class Powerup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (_playerCheck != null)
+            if (_player != null)
             {
                 switch(_powerupID)
                 {
@@ -55,7 +55,7 @@ public class Powerup : MonoBehaviour
                         _player.ShieldActivated();
                         break;
                 }
-
+                _audioManager.PlayPowerup();
             }
             Destroy(gameObject);
         }
