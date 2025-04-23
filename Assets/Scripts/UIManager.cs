@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int playerLife)
     {
+<<<<<<< HEAD
         if (playerLife < 0)
         {
             return;
@@ -47,6 +48,13 @@ public class UIManager : MonoBehaviour
 
         if (playerLife == 0)
         {
+=======
+
+        _livesContainer.sprite = _lives[playerLife];
+
+        if (playerLife == 0)
+        {
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
             GameOverSequence();
         }
     }

@@ -28,10 +28,23 @@ public class SpawnManager : MonoBehaviour
     }
     public void StartSpawning()
     {
+        
+    }
+
+<<<<<<< HEAD
+=======
+    private void Update()
+    {
+        randomPos = Random.Range(-9.32f, 9.32f);
+
+    }
+    public void StartSpawning()
+    {
         StartCoroutine(EnemySpawnTimer());
         StartCoroutine(PowerupSpawnTimer());
     }
 
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
     IEnumerator EnemySpawnTimer()
     {
         yield return new WaitForSeconds(2f);

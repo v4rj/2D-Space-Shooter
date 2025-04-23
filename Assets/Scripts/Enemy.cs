@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private GameObject _laserPrefab;
 
     private Animator _animator;
+<<<<<<< HEAD
     private int _randomScore;
     private Player _player;
     private SpawnManager _spawn;
@@ -24,12 +25,28 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         if (_player == null)
+=======
+    private int randomScore;
+    private Player player;
+    private SpawnManager spawn;
+    private AudioManager _audioManager;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        if (player == null)
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
         {
             Debug.LogError("Player is null");
         }
         
+<<<<<<< HEAD
         _spawn = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         if (_spawn == null)
+=======
+        spawn = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        if (spawn == null)
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
         {
             Debug.LogError("Spawn Manager is null");
         }
@@ -45,8 +62,11 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Audio Manager is null");
         }
+<<<<<<< HEAD
 
         _isDead = false;
+=======
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
     }
 
     void Update()
@@ -88,7 +108,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
 
+<<<<<<< HEAD
             if (_player != null)
+=======
+            if (player != null)
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
             {
                 _randomScore = Random.Range(10, 20);
                 _player.ScoreCalculator(_randomScore);
@@ -99,12 +123,21 @@ public class Enemy : MonoBehaviour
                 _spawn.IncreaseSpawnTimer();
             }
 
+<<<<<<< HEAD
             IsEnemyDead();
             _animator.SetTrigger("OnEnemyDeath");
             _enemySpeed = 0;
             _audioManager.PlayExplosion();
 
             Destroy(GetComponent<Collider2D>());
+=======
+            _animator.SetTrigger("OnEnemyDeath");
+
+            _audioManager.PlayExplosion();
+
+            _enemySpeed = 0;
+
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
             Destroy(gameObject, 2.633f);
         }
         else if (other.tag == "Player")
@@ -114,8 +147,13 @@ public class Enemy : MonoBehaviour
                 _player.Damage(_enemyPower);
             }
 
+<<<<<<< HEAD
             IsEnemyDead();
             _animator.SetTrigger("OnEnemyDeath");
+=======
+            _animator.SetTrigger("OnEnemyDeath");
+
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
             _audioManager.PlayExplosion();
 
             Destroy(gameObject, 2.633f);

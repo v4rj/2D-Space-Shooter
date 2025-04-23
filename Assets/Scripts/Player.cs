@@ -21,7 +21,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isShieldEnabled;
     [SerializeField]
+<<<<<<< HEAD
     private bool _isSpeedEnabled;
+=======
+    private bool _isSpeedEnabled = false;
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
     [SerializeField]
     private GameObject[] _hurtAnims;
 
@@ -33,7 +37,11 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
     private AudioManager _audioManager;
+<<<<<<< HEAD
     private int _randAnimation;
+=======
+    private int randAnimation;
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
 
     void Start()
     {
@@ -57,7 +65,11 @@ public class Player : MonoBehaviour
             Debug.LogError("Audio Manager is null");
         }
 
+<<<<<<< HEAD
         _randAnimation = Random.Range(0, _hurtAnims.Length);
+=======
+        randAnimation = Random.Range(0, _hurtAnims.Length);
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
     }
 
     void Update()
@@ -156,7 +168,13 @@ public class Player : MonoBehaviour
         }
 
         _playerLives -= damageValue;
+<<<<<<< HEAD
         ActivateHurtAnimation();
+=======
+
+        ActivateHurtAnimation();
+
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
         _uiManager.UpdateLives(_playerLives);
 
         if (_playerLives <= 0)
@@ -175,6 +193,7 @@ public class Player : MonoBehaviour
     {
         if (_playerLives < 3)
         {
+<<<<<<< HEAD
             _hurtAnims[_randAnimation].SetActive(true);
         }
 
@@ -183,6 +202,16 @@ public class Player : MonoBehaviour
             _hurtAnims[1].SetActive(true);
         }
         else if (_playerLives < 2 && _randAnimation == 1)
+=======
+            _hurtAnims[randAnimation].SetActive(true);
+        }
+
+        if (_playerLives < 2 && randAnimation == 0)
+        {
+            _hurtAnims[1].SetActive(true);
+        }
+        else if (_playerLives < 2 && randAnimation == 1)
+>>>>>>> e74a98862b071f94358bc505f0ce8949ac799272
         {
             _hurtAnims[0].SetActive(true);
         }
