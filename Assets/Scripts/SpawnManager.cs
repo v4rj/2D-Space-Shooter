@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
-    private GameObject[] _powerups;
+    private GameObject[] _powerups; //Make sure to add an index and add ammo count powerup
     [SerializeField]
     private GameObject _powerupContainer;
     [SerializeField]
