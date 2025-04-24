@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isShieldEnabled;
     [SerializeField]
+    private int _shieldStrength;
+    [SerializeField]
     private bool _isSpeedEnabled;
     [SerializeField]
     private GameObject[] _hurtAnims;
@@ -146,6 +148,7 @@ public class Player : MonoBehaviour
     public void ShieldActivated()
     {
         _isShieldEnabled = true;
+        _shieldStrength = 3;
         _shield.SetActive(true);
     }
 
@@ -156,8 +159,12 @@ public class Player : MonoBehaviour
 
         if (_isShieldEnabled == true)
         {
-            _isShieldEnabled = false;
-            _shield.SetActive(false);
+            _shieldStrength -= 1;
+            if (_shieldStrength <= 0)
+            {
+                _isShieldEnabled = false;
+                _shield.SetActive(false);
+            }
             return;
         }
 
