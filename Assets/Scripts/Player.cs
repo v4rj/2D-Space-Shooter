@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _ammoCount = 15;
     [SerializeField]
+    private int _ammoRefill = 15;
+    [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
@@ -160,6 +162,11 @@ public class Player : MonoBehaviour
         _isShieldEnabled = true;
         _shieldStrength = 3;
         _shield.SetActive(true);
+    }
+
+    public void AmmoRefill()
+    {
+        _ammoCount += _ammoRefill;
     }
 
     public void Damage(int damageValue)
