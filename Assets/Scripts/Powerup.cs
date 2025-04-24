@@ -54,6 +54,9 @@ public class Powerup : MonoBehaviour
                     case 2:
                         _player.ShieldActivated();
                         break;
+                    case 3:
+                        _player.AmmoRefill();
+                        break;
                 }
                 _audioManager.PlayPowerup();
             }
