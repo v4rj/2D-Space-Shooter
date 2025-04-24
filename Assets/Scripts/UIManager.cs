@@ -20,25 +20,29 @@ public class UIManager : MonoBehaviour
     private Sprite[] _lives;
 
     private GameManager _gameManager;
-    private bool _thrusterCooldown;
+    private Player _player;
 
     void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _gameOver.gameObject.SetActive(false);
-        _scoreText.text = "Score: " + 0;
-
         if (_gameManager == null)
         {
-            Debug.LogError("Game Manager is Null.");
+            Debug.LogError("Game Manager Script is Null.");
         }
 
-        _thrusterCooldown = false;
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        if (_player == null)
+        {
+            Debug.LogError("Player Script is Null.");
+        }
+
+        _gameOver.gameObject.SetActive(false);
+        _scoreText.text = "Score: " + 0;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _thrusterCooldown == false)
+        if (Input.GetKey(KeyCode.LeftShift) && _player.GetThrusterCooldown() == false)
         {
             ThrusterActivated();
         }
@@ -54,7 +58,7 @@ public class UIManager : MonoBehaviour
 
         if (_thruster.fillAmount == 0)
         {
-            _thrusterCooldown = true;
+            _player.ThrusterCooldownSwitch();
         }
     }
 
@@ -64,7 +68,12 @@ public class UIManager : MonoBehaviour
 
         if (_thruster.fillAmount == 1)
         {
-            _thrusterCooldown = false;
+            _player.ThrusterCooldownSwitch();
+            _thruster.color = new Color(255, 0, 0);
+        }
+        else if (_player.GetThrusterCooldown() == true)
+        {
+            _thruster.color = new Color(92, 88, 87);
         }
     }
 

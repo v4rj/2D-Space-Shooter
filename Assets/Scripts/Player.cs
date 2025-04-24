@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     private GameObject[] _hurtAnims;
 
     private float _coolDown = -1f;
+    private bool _thrusterCooldown;
     private float _horizontalInput;
     private float _verticalInput;
     private Vector3 _direction;
@@ -71,6 +72,8 @@ public class Player : MonoBehaviour
         _randAnimation = Random.Range(0, _hurtAnims.Length);
 
         _thrusterSpeed = _speed * _thrusterMultiplier;
+
+        _thrusterCooldown = false;
     }
 
     void Update()
@@ -94,7 +97,7 @@ public class Player : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         _direction = new Vector3(_horizontalInput, _verticalInput);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _thrusterCooldown == false)
         {
             transform.Translate(_direction * _thrusterSpeed * Time.deltaTime);
         }
@@ -112,6 +115,23 @@ public class Player : MonoBehaviour
         else if (transform.position.x <= -11.2893f)
         {
             transform.position = new Vector3(11.2893f, transform.position.y, 0);
+        }
+    }
+
+    public bool GetThrusterCooldown()
+    {
+        return _thrusterCooldown;
+    }
+
+    public void ThrusterCooldownSwitch()
+    {
+        if (_thrusterCooldown == true)
+        {
+            _thrusterCooldown = false;
+        }
+        else
+        {
+            _thrusterCooldown = true;
         }
     }
 
