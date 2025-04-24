@@ -13,12 +13,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _restartText;
     [SerializeField]
+    private Image _thruster;
+    [SerializeField]
     private Image _livesContainer;
     [SerializeField]
     private Sprite[] _lives;
 
     private GameManager _gameManager;
-    
+    private bool _thrusterCooldown;
+
     void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -28,6 +31,40 @@ public class UIManager : MonoBehaviour
         if (_gameManager == null)
         {
             Debug.LogError("Game Manager is Null.");
+        }
+
+        _thrusterCooldown = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && _thrusterCooldown == false)
+        {
+            ThrusterActivated();
+        }
+        else
+        {
+            ThrusterRecharge();
+        }
+    }
+
+    private void ThrusterActivated()
+    {
+        _thruster.fillAmount -= .5f * Time.deltaTime;
+
+        if (_thruster.fillAmount == 0)
+        {
+            _thrusterCooldown = true;
+        }
+    }
+
+    private void ThrusterRecharge()
+    {
+        _thruster.fillAmount += .35f * Time.deltaTime;
+
+        if (_thruster.fillAmount == 1)
+        {
+            _thrusterCooldown = false;
         }
     }
 

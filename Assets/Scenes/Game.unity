@@ -1094,6 +1094,7 @@ RectTransform:
   - {fileID: 497038491}
   - {fileID: 783791146}
   - {fileID: 1204674102}
+  - {fileID: 1765654311}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1117,6 +1118,7 @@ MonoBehaviour:
   _scoreText: {fileID: 1848709349}
   _gameOver: {fileID: 783791147}
   _restartText: {fileID: 1204674103}
+  _thruster: {fileID: 1765654312}
   _livesContainer: {fileID: 497038492}
   _lives:
   - {fileID: 21300000, guid: ba53e111f0125654cabfd4eefaf3a657, type: 3}
@@ -1156,6 +1158,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerLives: 3
   _speed: 7
+  _thrusterMultiplier: 1.5
+  _thrusterSpeed: 0
+  _ammoCount: 15
+  _ammoRefill: 15
   _laserPrefab: {fileID: 1947060649458477426, guid: b1521e1b5e7d7fd4e88495b9682fc8a5,
     type: 3}
   _tripleShotPrefab: {fileID: 4605563329236471972, guid: 3f3b5adf5b8378f49a468aecec44d8db,
@@ -1164,6 +1170,7 @@ MonoBehaviour:
   _fireRate: 0.11
   _isTripleShotEnabled: 0
   _isShieldEnabled: 0
+  _shieldStrength: 0
   _isSpeedEnabled: 0
   _hurtAnims:
   - {fileID: 696063589}
@@ -1445,6 +1452,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1765654310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1765654311}
+  - component: {fileID: 1765654313}
+  - component: {fileID: 1765654312}
+  m_Layer: 5
+  m_Name: Thruster_Cooldown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1765654311
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765654310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1623885915}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -302.8, y: -202.6}
+  m_SizeDelta: {x: 170.01291, y: 16.496284}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1765654312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765654310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a7be493bb38aea54497dcbd72acc1317, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1765654313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765654310}
+  m_CullTransparentMesh: 0
 --- !u!1 &1815048679
 GameObject:
   m_ObjectHideFlags: 0
