@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
 
+        if (Input.GetKey("Left Shift"))
+        {
+            _speed *= 1.5;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown)
         {
             FireLaser();
