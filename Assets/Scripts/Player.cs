@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
+    private int _ammoCount = 15;
+    [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
@@ -105,15 +107,23 @@ public class Player : MonoBehaviour
 
     private void FireLaser()
     {
+        if (_ammoCount <= 0)
+        {
+            Debug.Log("Out of Ammo!");    
+            return;
+        }
+        
         _coolDown = Time.time + _fireRate;
 
-        if (_isTripleShotEnabled == false)
+        if (_isTripleShotEnabled == true && _ammoCount >= 3)
         {
-            Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + .85f), Quaternion.identity);
+            Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            _ammoCount -= 3;
         }
         else
         {
-            Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + .85), Quaternion.identity);
+            _ammoCount -= 1;
         }
 
         _audioManager.PlayLaserShot();
