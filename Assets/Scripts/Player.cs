@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
+    private float _thrusterMultiplier = 1.5f;
+    [SerializeField]
+    private float _thrusterSpeed;
+    [SerializeField]
     private int _ammoCount = 15;
     [SerializeField]
     private int _ammoRefill = 15;
@@ -65,16 +69,13 @@ public class Player : MonoBehaviour
         }
 
         _randAnimation = Random.Range(0, _hurtAnims.Length);
+
+        _thrusterSpeed = _speed * _thrusterMultiplier;
     }
 
     void Update()
     {
         CalculateMovement();
-
-        if (Input.GetKey("Left Shift"))
-        {
-            _speed *= 1.5;
-        }
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown)
         {
@@ -93,7 +94,14 @@ public class Player : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         _direction = new Vector3(_horizontalInput, _verticalInput);
 
-        transform.Translate(_direction * _speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(_direction * _thrusterSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(_direction * _speed * Time.deltaTime);
+        }
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
@@ -124,7 +132,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + .85), Quaternion.identity);
+            Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + .85f), Quaternion.identity);
             _ammoCount -= 1;
         }
 
