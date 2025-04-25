@@ -30,12 +30,10 @@ public class Asteroid : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Laser")
-        {
+
             Instantiate(_anim, posToSpawn, Quaternion.identity);
             Destroy(other.gameObject);
             _spawnManager.StartSpawning();
             Destroy(gameObject, .05f);
-        }
     }
 }

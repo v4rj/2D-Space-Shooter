@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shield;
     [SerializeField]
+    private GameObject _bombPrefab;
+    [SerializeField]
     private float _fireRate = 0.5f;
     [SerializeField]
     private bool _isTripleShotEnabled;
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
     private int _shieldStrength;
     [SerializeField]
     private bool _isSpeedEnabled;
+    [SerializeField]
+    private bool _isBombEnabled;
     [SerializeField]
     private GameObject[] _hurtAnims;
 
@@ -90,7 +94,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown)
         {
-            FireLaser();
+            FireProjectile();
         }
     }
 
@@ -143,7 +147,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FireLaser()
+    private void FireProjectile()
     {
         if (_ammoCount <= 0)
         {
@@ -157,6 +161,10 @@ public class Player : MonoBehaviour
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             _ammoCount -= 3;
+        }
+        else if (_isBombEnabled == true)
+        {
+            Instantiate(_bombPrefab, new Vector3(transform.position.x, transform.position.y + 2f), Quaternion.identity);
         }
         else
         {
@@ -192,6 +200,18 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5);
         _isSpeedEnabled = false;
         _speed /= 2;
+    }
+
+    public void BombActivated()
+    {
+        _isBombEnabled = true;
+        StartCoroutine(BombPowerDownTimer());
+    }
+
+    IEnumerator BombPowerDownTimer()
+    {
+        yield return new WaitForSeconds(5);
+        _isBombEnabled = false;
     }
 
     public void ShieldActivated()

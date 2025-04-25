@@ -10,6 +10,7 @@ public class Powerup : MonoBehaviour
     //0 = Triple Shot
     //1 = Speed 
     //2 = Shield
+    //3 = Rare Powerup
     [SerializeField]
     private int _powerupID;
 
@@ -53,6 +54,9 @@ public class Powerup : MonoBehaviour
                         break;
                     case 2:
                         _player.ShieldActivated();
+                        break;
+                    case 3:
+                        _player.BombActivated();
                         break;
                 }
                 _audioManager.PlayPowerup();

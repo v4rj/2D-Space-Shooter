@@ -10,8 +10,6 @@ public class Laser : MonoBehaviour
     private int _laserPower = 1;
     [SerializeField]
     private GameObject _tripleShotContainer;
-    [SerializeField]
-    private GameObject _enemyFireContainer;
 
     void Update()
     {
