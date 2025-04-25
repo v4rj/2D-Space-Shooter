@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private Camera _mainCamera;
+    [SerializeField]
     private int _playerLives = 3;
     [SerializeField]
     private float _speed = 3.5f;

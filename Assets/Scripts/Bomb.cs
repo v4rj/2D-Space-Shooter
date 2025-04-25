@@ -7,8 +7,6 @@ public class Bomb : MonoBehaviour
     [SerializeField]
     private float _bombSpeed = 12f;
     [SerializeField]
-    private int _bombPower = 2;
-    [SerializeField]
     private GameObject _AOEPrefab;
 
     // Update is called once per frame
