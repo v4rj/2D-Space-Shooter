@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Powerup : MonoBehaviour
+public class Pickups : MonoBehaviour
 {
     [SerializeField]
-    private float _powerupSpeed = 4f;
+    private float _pickupsSpeed = 4f;
 
-    //0 = Triple Shot
-    //1 = Speed 
-    //2 = Shield
+    // 0 Create
+    // 1 Heart
     [SerializeField]
-    private int _powerupID;
-
+    private int _pickupsID;
     private Player _player;
     private AudioManager _audioManager;
 
@@ -24,7 +22,7 @@ public class Powerup : MonoBehaviour
 
     void Update()
     {
-        PowerupMovement();
+        PickupMovement();
 
         if (transform.position.y <= -5.5f)
         {
@@ -32,9 +30,9 @@ public class Powerup : MonoBehaviour
         }
     }
 
-    private void PowerupMovement()
+    private void PickupMovement()
     {
-        transform.Translate(Vector3.down * _powerupSpeed * Time.deltaTime);
+        transform.Translate(Vector3.down * _pickupsSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,16 +41,13 @@ public class Powerup : MonoBehaviour
         {
             if (_player != null)
             {
-                switch(_powerupID)
+                switch (_pickupsID)
                 {
                     case 0:
-                        _player.TripleShotActivated();
+                        _player.AmmoRefill();
                         break;
                     case 1:
-                        _player.SpeedActivated();
-                        break;
-                    case 2:
-                        _player.ShieldActivated();
+                        _player.GainALife();
                         break;
                 }
                 _audioManager.PlayPowerup();
@@ -61,4 +56,3 @@ public class Powerup : MonoBehaviour
         }
     }
 }
-

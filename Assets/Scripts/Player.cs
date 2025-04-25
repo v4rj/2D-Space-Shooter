@@ -206,6 +206,13 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmoCount(_ammoCount);
     }
 
+    public void GainALife()
+    {
+        _playerLives += 1;
+        _uiManager.UpdateLives(_playerLives);
+        HealingHurtAnimation();
+    }
+
     public void Damage(int damageValue)
     {
         SpawnManager spawn_manager;
@@ -264,6 +271,23 @@ public class Player : MonoBehaviour
         else if (_playerLives < 2 && _randAnimation == 1)
         {
             _hurtAnims[0].SetActive(true);
+        }
+    }
+
+    private void HealingHurtAnimation()
+    {
+        if (_playerLives < 2)
+        {
+            _hurtAnims[_randAnimation].SetActive(false);
+        }
+
+        if (_playerLives > 1 && _randAnimation == 0)
+        {
+            _hurtAnims[1].SetActive(false);
+        }
+        else if (_playerLives > 1 && _randAnimation == 1)
+        {
+            _hurtAnims[0].SetActive(false);
         }
     }
 

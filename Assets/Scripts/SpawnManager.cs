@@ -11,7 +11,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _powerups;
     [SerializeField]
+    private GameObject[] _pickups;
+    [SerializeField]
     private GameObject _powerupContainer;
+    [SerializeField]
+    private GameObject _pickupContainer;
     [SerializeField]
     private float _spawnTimer = 1.8f;
     [SerializeField]
@@ -31,6 +35,7 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(EnemySpawnTimer());
         StartCoroutine(PowerupSpawnTimer());
+        StartCoroutine(PickupSpawnTimer());
     }
 
     IEnumerator EnemySpawnTimer()
@@ -58,6 +63,21 @@ public class SpawnManager : MonoBehaviour
             Vector3 posToSpawn = new Vector3(_randomPos, 7.7f, 0);
             newPowerUp = Instantiate(_powerups[randomPowerup], posToSpawn, Quaternion.identity);
             newPowerUp.transform.parent = _powerupContainer.transform;
+            yield return new WaitForSeconds(_powerupTimer);
+        }
+    }
+
+    IEnumerator PickupSpawnTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        GameObject newPickup;
+
+        while (_stopSpawning == false)
+        {
+            int randomPickup = Random.Range(0, _pickups.Length);
+            Vector3 posToSpawn = new Vector3(_randomPos, 7.7f, 0);
+            newPickup = Instantiate(_pickups[randomPickup], posToSpawn, Quaternion.identity);
+            newPickup.transform.parent = _powerupContainer.transform;
             yield return new WaitForSeconds(_powerupTimer);
         }
     }
