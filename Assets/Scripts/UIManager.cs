@@ -15,12 +15,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image _thruster;
     [SerializeField]
+    private float _thrusterBarCooldownRate = 0.5f;
+    [SerializeField]
     private Image _livesContainer;
     [SerializeField]
     private Sprite[] _lives;
 
     private GameManager _gameManager;
     private Player _player;
+    private float _thrusterAlphaCooldown = 0f;
 
     void Start()
     {
@@ -59,6 +62,7 @@ public class UIManager : MonoBehaviour
         if (_thruster.fillAmount == 0)
         {
             _player.ThrusterCooldownSwitch();
+            _thruster.color = new Color(92, 88, 87);
         }
     }
 
@@ -73,7 +77,25 @@ public class UIManager : MonoBehaviour
         }
         else if (_player.GetThrusterCooldown() == true)
         {
-            _thruster.color = new Color(92, 88, 87);
+            StartCoroutine(ThrusterUIFlicker());
+        }
+    }
+
+    IEnumerator ThrusterUIFlicker()
+    {
+        yield return new WaitForSeconds(.45f);
+
+        if (_thruster.color.a == 1 && Time.time > _thrusterAlphaCooldown)
+        {
+            _thrusterAlphaCooldown = Time.time + _thrusterBarCooldownRate;
+
+            _thruster.color = new Color(_thruster.color.r, _thruster.color.g, _thruster.color.b, 0f);
+        }
+        else if (Time.time > _thrusterAlphaCooldown)
+        {
+            _thrusterAlphaCooldown = Time.time + _thrusterBarCooldownRate;
+
+            _thruster.color = new Color(_thruster.color.r, _thruster.color.g, _thruster.color.b, 1f);
         }
     }
 

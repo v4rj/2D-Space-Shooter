@@ -1119,6 +1119,8 @@ MonoBehaviour:
   _gameOver: {fileID: 783791147}
   _restartText: {fileID: 1204674103}
   _thruster: {fileID: 1765654312}
+  _thrusterColor: {r: 1, g: 0, b: 0, a: 1}
+  _thrusterBarCooldownRate: 0.15
   _livesContainer: {fileID: 497038492}
   _lives:
   - {fileID: 21300000, guid: ba53e111f0125654cabfd4eefaf3a657, type: 3}
