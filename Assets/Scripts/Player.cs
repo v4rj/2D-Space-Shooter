@@ -203,6 +203,7 @@ public class Player : MonoBehaviour
     public void AmmoRefill()
     {
         _ammoCount += _ammoRefill;
+        _uiManager.UpdateAmmoCount(_ammoCount);
     }
 
     public void Damage(int damageValue)

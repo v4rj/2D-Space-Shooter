@@ -10,6 +10,7 @@ public class Powerup : MonoBehaviour
     //0 = Triple Shot
     //1 = Speed 
     //2 = Shield
+    //3 = Ammo Crate
     [SerializeField]
     private int _powerupID;
 

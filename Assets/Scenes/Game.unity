@@ -1694,6 +1694,7 @@ MonoBehaviour:
   - {fileID: 549933154846225100, guid: 8aeee79e27a63374393414522b856e1c, type: 3}
   - {fileID: 7076701936714173902, guid: a2c6b198c9aad8e4a9b42b9dcc1091fe, type: 3}
   - {fileID: 2419672573402414275, guid: 0a723daa9c4851f409c46b23245c89f3, type: 3}
+  - {fileID: 3717486983641139080, guid: ecaf1f4a865affb4980972f8e1c74a2a, type: 3}
   _powerupContainer: {fileID: 113263033}
   _spawnTimer: 1.8
   _spawnTimeIncrease: 0.2
