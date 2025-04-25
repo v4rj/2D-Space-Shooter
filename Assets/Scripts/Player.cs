@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
         }
 
         _randAnimation = Random.Range(0, _hurtAnims.Length);
+        Debug.Log(_randAnimation);
 
         _thrusterSpeed = _speed * _thrusterMultiplier;
 
@@ -208,7 +209,15 @@ public class Player : MonoBehaviour
 
     public void GainALife()
     {
-        _playerLives += 1;
+        if (_playerLives == 3)
+        {
+            return;
+        }
+        else
+        {
+            _playerLives += 1;
+        }
+        
         _uiManager.UpdateLives(_playerLives);
         HealingHurtAnimation();
     }
@@ -276,18 +285,18 @@ public class Player : MonoBehaviour
 
     private void HealingHurtAnimation()
     {
-        if (_playerLives < 2)
+        if (_playerLives < 3)
         {
             _hurtAnims[_randAnimation].SetActive(false);
         }
 
-        if (_playerLives > 1 && _randAnimation == 0)
-        {
-            _hurtAnims[1].SetActive(false);
-        }
-        else if (_playerLives > 1 && _randAnimation == 1)
+        if (_playerLives == 3 && _hurtAnims[0].activeInHierarchy)
         {
             _hurtAnims[0].SetActive(false);
+        }
+        else if (_playerLives == 3 && _hurtAnims[1].activeInHierarchy)
+        {
+            _hurtAnims[1].SetActive(false);
         }
     }
 
