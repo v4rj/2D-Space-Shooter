@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     private float _verticalInput;
     private Vector3 _direction;
     private int _score = 0;
+    private SpriteRenderer _shieldSpriteColor;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
     private AudioManager _audioManager;
@@ -67,6 +68,12 @@ public class Player : MonoBehaviour
         if (_audioManager == null)
         {
             Debug.LogError("Audio Manager is null");
+        }
+
+        _shieldSpriteColor = _shield.GetComponent<SpriteRenderer>();
+        if (_shieldSpriteColor == null)
+        {
+            Debug.LogError("Shield Sprite Renderer is null");
         }
 
         _randAnimation = Random.Range(0, _hurtAnims.Length);
@@ -205,10 +212,20 @@ public class Player : MonoBehaviour
         if (_isShieldEnabled == true)
         {
             _shieldStrength -= 1;
+
             if (_shieldStrength <= 0)
             {
                 _isShieldEnabled = false;
                 _shield.SetActive(false);
+                return;
+            }
+            else if (_shieldStrength == 2)
+            {
+                _shieldSpriteColor.color = new Color(0.1492524f, 0.8113208f, 0.3983684f);
+            }
+            else
+            {
+                _shieldSpriteColor.color = Color.red;
             }
             return;
         }
