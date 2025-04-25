@@ -33,9 +33,12 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate(_AOEPrefab, transform.position, Quaternion.identity);
-        Destroy(other.gameObject);
-        Destroy(gameObject);
+        if (other.CompareTag("Enemy"))
+        {
+            Instantiate(_AOEPrefab, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 
 

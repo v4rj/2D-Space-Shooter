@@ -157,14 +157,14 @@ public class Player : MonoBehaviour
         
         _coolDown = Time.time + _fireRate;
 
-        if (_isTripleShotEnabled == true && _ammoCount >= 3)
+        if (_isBombEnabled == true)
+        {
+            Instantiate(_bombPrefab, new Vector3(transform.position.x, transform.position.y + 2f), Quaternion.identity);
+        }
+        else if (_isTripleShotEnabled == true && _ammoCount >= 3 && _isBombEnabled == false)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             _ammoCount -= 3;
-        }
-        else if (_isBombEnabled == true)
-        {
-            Instantiate(_bombPrefab, new Vector3(transform.position.x, transform.position.y + 2f), Quaternion.identity);
         }
         else
         {
@@ -184,12 +184,22 @@ public class Player : MonoBehaviour
 
     IEnumerator TripleShotPowerDownTimer()
     {
+        if (_isBombEnabled == true)
+        {
+            _isTripleShotEnabled = false;
+            yield break;
+        }
+
         yield return new WaitForSeconds(5);
         _isTripleShotEnabled = false;
     }
 
     public void SpeedActivated()
     {
+        if (_isSpeedEnabled == true)
+        {
+            return;
+        }
         _isSpeedEnabled = true;
         _speed *= 2;
         StartCoroutine(SpeedPowerDownTimer());

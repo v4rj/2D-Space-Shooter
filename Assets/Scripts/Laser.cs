@@ -33,9 +33,9 @@ public class Laser : MonoBehaviour
     {
         if (transform.position.y >= 7.7f ^ transform.position.y <= -5.5f)
         {
-            if (transform.parent == _tripleShotContainer)
+            if (transform.parent != null)
             {
-                Destroy(_tripleShotContainer);
+                Destroy(transform.parent.gameObject);
             }
             Destroy(gameObject);
         }

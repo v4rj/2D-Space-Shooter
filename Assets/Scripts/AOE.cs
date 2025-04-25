@@ -28,7 +28,7 @@ public class AOE : MonoBehaviour
         _scaleChange = new Vector3(.05f, .05f, 0);
 
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (transform.localScale.x < 31)
