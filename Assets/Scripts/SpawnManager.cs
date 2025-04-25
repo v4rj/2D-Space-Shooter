@@ -76,7 +76,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator RarePowerupSpawnTimer()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(10f);
         GameObject newRarePowerUp;
 
         while (_stopSpawning == false)
