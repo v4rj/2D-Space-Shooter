@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
     {
         if (_ammoCount <= 0)
         {
-            Debug.Log("Out of Ammo!");    
+            _audioManager.MisfireSound();    
             return;
         }
         
@@ -163,6 +163,7 @@ public class Player : MonoBehaviour
             _ammoCount -= 1;
         }
 
+        _uiManager.UpdateAmmoCount(_ammoCount);
         _audioManager.PlayLaserShot();
     }
 

@@ -10,6 +10,10 @@ public class AudioManager : MonoBehaviour
     private AudioSource _explosion;
     [SerializeField]
     private AudioSource _powerup;
+    [SerializeField]
+    private AudioSource _misFire;
+    [SerializeField]
+    private AudioSource _recharge;
 
     public void PlayLaserShot ()
     {
@@ -24,5 +28,15 @@ public class AudioManager : MonoBehaviour
     public void PlayPowerup()
     {
         _powerup.Play();
+    }
+
+    public void MisfireSound()
+    {
+        _misFire.Play();
+    }
+
+    public void RechargeSound()
+    {
+        _recharge.Play();
     }
 }

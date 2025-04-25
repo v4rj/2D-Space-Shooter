@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
+    private TextMeshProUGUI _ammoText;
+    [SerializeField]
     private Text _gameOver;
     [SerializeField]
     private Text _restartText;
@@ -23,7 +25,9 @@ public class UIManager : MonoBehaviour
 
     private GameManager _gameManager;
     private Player _player;
+    private AudioManager _audioManager;
     private float _thrusterAlphaCooldown = 0f;
+    private bool _rechargeSoundCooldown;
 
     void Start()
     {
@@ -37,6 +41,12 @@ public class UIManager : MonoBehaviour
         if (_player == null)
         {
             Debug.LogError("Player Script is Null.");
+        }
+
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        if (_audioManager == null)
+        {
+            Debug.LogError("Audio Manager Script is null");
         }
 
         _gameOver.gameObject.SetActive(false);
@@ -74,9 +84,15 @@ public class UIManager : MonoBehaviour
         {
             _player.ThrusterCooldownSwitch();
             _thruster.color = new Color(255, 0, 0);
+            _rechargeSoundCooldown = false;
         }
         else if (_player.GetThrusterCooldown() == true)
         {
+            if (_rechargeSoundCooldown == false)
+            {
+                _audioManager.RechargeSound();
+                _rechargeSoundCooldown = true;
+            }
             StartCoroutine(ThrusterUIFlicker());
         }
     }
@@ -117,6 +133,11 @@ public class UIManager : MonoBehaviour
         {
             GameOverSequence();
         }
+    }
+
+    public void UpdateAmmoCount(int ammoCount)
+    {
+        _ammoText.text = "" + ammoCount;
     }
 
     private void GameOverSequence()
