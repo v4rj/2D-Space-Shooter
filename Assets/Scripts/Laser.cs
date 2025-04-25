@@ -10,6 +10,8 @@ public class Laser : MonoBehaviour
     private int _laserPower = 1;
     [SerializeField]
     private GameObject _tripleShotContainer;
+    [SerializeField]
+    private GameObject _enemyFireContainer;
 
     void Update()
     {
@@ -31,7 +33,7 @@ public class Laser : MonoBehaviour
 
     void DestroyLaser()
     {
-        if (transform.position.y >= 7.7f ^ transform.position.y < -5.5f)
+        if (transform.position.y >= 7.7f ^ transform.position.y <= -5.5f)
         {
             if (transform.parent == _tripleShotContainer)
             {

@@ -98,8 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserSpeed: 7
   _laserPower: 1
-  _damageCDTimer: 5
   _tripleShotContainer: {fileID: 4605563329236471972, guid: 3f3b5adf5b8378f49a468aecec44d8db,
+    type: 3}
+  _enemyFireContainer: {fileID: 6879599673942480454, guid: a90a5f52529e79d409097f1b91be630c,
     type: 3}
 --- !u!61 &1947060649458477425
 BoxCollider2D:
