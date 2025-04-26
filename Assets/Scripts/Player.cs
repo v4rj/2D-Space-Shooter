@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FirstGearGames.SmoothCameraShaker;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
     private AudioManager _audioManager;
     private int _randAnimation;
+    public ShakeData _myShake;
 
 
     void Start()
@@ -281,7 +283,7 @@ public class Player : MonoBehaviour
         }
 
         _playerLives -= damageValue;
-
+        CameraShakerHandler.Shake(_myShake);
         ActivateHurtAnimation();
 
         _uiManager.UpdateLives(_playerLives);
