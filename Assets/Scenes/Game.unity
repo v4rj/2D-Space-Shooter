@@ -1471,6 +1471,7 @@ MonoBehaviour:
   _hurtAnims:
   - {fileID: 696063589}
   - {fileID: 2110844845}
+  _myShake: {fileID: 11400000, guid: e835c09b3045a724fbd00a08362a9781, type: 2}
 --- !u!212 &1692279541
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2373,6 +2374,7 @@ GameObject:
   - component: {fileID: 1957649151}
   - component: {fileID: 1957649150}
   - component: {fileID: 1957649153}
+  - component: {fileID: 1957649154}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2505,6 +2507,23 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1957649154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957649149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shakeTechnique: 0
+  _makeDefaultOnEnable: 1
+  _limitMagnitude: 0
+  _positionalMagnitudeLimit: 10
+  _rotationalMagnitudeLimit: 3
 --- !u!1 &1978109276
 GameObject:
   m_ObjectHideFlags: 0
