@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _fireRate = 3f;
     [SerializeField]
+    private flat _minSpawnRange = 1f;
+    [SerializeField]
+    private flat _maxSpawnRange = 1f;
+    [SerializeField]
     private GameObject _laserPrefab;
 
     private Animator _animator;
@@ -67,6 +71,8 @@ public class Enemy : MonoBehaviour
     private void EnemyMovement()
     {
         transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, _minSpawnRange, _maxSpawnRange), transform.position.y, 0);
     }
 
     private void EnemyFire()
