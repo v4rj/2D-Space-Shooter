@@ -28,9 +28,12 @@ public class SpawnManager : MonoBehaviour
     private float _rarePowerupTimer = 5;
     [SerializeField]
     private float _pickupTimer = 3f;
+    [SerializedField]
+    private float _waveTransitionTime = 3f;
 
     private bool _stopSpawning = false;
     private float _randomPos;
+    private bool _waveTransition;
 
     void Update()
     {
@@ -52,11 +55,22 @@ public class SpawnManager : MonoBehaviour
 
         while (_stopSpawning == false)
             {
+                if (_waveTransition == true)
+                {
+                    StartCoroutine(WaveTransition());
+                }
+                
                 Vector3 posToSpawn = new Vector3(_randomPos, 7.7f, 0);
                 newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
                 newEnemy.transform.parent = _enemyContainer.transform;
                 yield return new WaitForSeconds(_spawnTimer);
             }         
+    }
+
+    IEnumerator WaveTransition()
+    {
+        yield return new WaitForSeconds(_waveTransitionTime)
+        _waveTransition = false;
     }
 
     IEnumerator CommonPowerupSpawnTimer()
