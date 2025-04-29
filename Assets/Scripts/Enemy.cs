@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     private SpawnManager _spawn;
     private AudioManager _audioManager;
     private bool _isDead;
+    private int _randomDirection;
+    private bool _movementSwitch;
 
     private void Start()
     {
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
         }
 
         _isDead = false;
+        _randomDirection = Random.Range(0,1);
     }
 
     void Update()
@@ -73,6 +76,52 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, _minSpawnRange, _maxSpawnRange), transform.position.y, 0);
+
+        if (_randomDirection == 0)
+        {
+            transform.Translate(Vector3.left * _enemySpeed * Time.delta); 
+            SideToSideMovement();
+        }
+        else
+        {
+            transform.Translate(Vector3.right * _enemySpeed * Time.deltaTime);
+            SideToSideMovement();
+        }
+    }
+
+    private void SideToSideMovement()
+    {
+        while (_isDead == false)
+        {
+            if (_movementSwitch == false)
+            {
+                transform.Translate(Vector3.left * _enemySpeed * Time.deltaTime);
+                if (transform.position.x <= _minSpawnRange)
+                {
+                    MovementSwitch();
+                }
+            }
+            else
+            {
+                transform.Translate(Vector3.right * _enemySpeed * Time.deltaTime);
+                if (transform.position.x >= _maxSpawnRange)
+                {
+                    MovementSwitch();
+                }
+            }
+        }
+    }
+
+    private void MovementSwitch()
+    {
+        if (_movementSwitch == true)
+        {
+            _movementSwitch == false;
+        }
+        else
+        {
+            _movementSwitch == true;
+        }
     }
 
     private void EnemyFire()
